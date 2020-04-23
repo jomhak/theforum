@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    background-image: url("/images/background_tile.png");
+}
+
+#main {
+    
+    padding: 10px;
+    margin: auto;
+    
+    width: 800px;
+    background-color: #4A5F6D;
+    color: #FEFEFE;
+
+    box-shadow: 5px 5px 10px #0B1216;
+}
+
+
+.generalButton {
+    text-decoration: none;
+    min-width: 120px;
+    margin: 5px;
+    padding: 8px 30px;
+    display: inline-block;
+    border: 2px #FEFEFE solid;
+    background-color: #4D7D9E;
+    color: #FEFEFE;
+    font-family: "Lato", sans-serif;
+    box-shadow: 2px 2px 4px #0B1216;
+}
+
+.generalButton:hover {
+    cursor: pointer;
+    border: 4px #FEFEFE solid;
+    padding: 6px 28px;
+    background-color: #4A5F6D;
+}
+
+.generalButton:focus {
+    outline: 0;
+}
+
+#searchField {
+    display: inline-block;
+    border: 2px #FEFEFE solid;
+    background-color: #4A5F6D;
+    color: #FEFEFE;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    padding: 4px;
+    box-shadow: 2px 2px 4px #0B1216;
+    
+}
+
+#searchField:focus {
+    outline: 0;
+}
+
+.textField {
+	border: 2px #FEFEFE solid;
+    background-color: #4A5F6D;
+    color: #FEFEFE;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    padding: 4px;
+    box-shadow: 2px 2px 4px #0B1216;
+    width: 98%;
+}
+
+.textField:focus {
+    outline: 0;
+}
+
+
+#headerArea {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#headerGreeting {
+    width: 70%;
+    margin: auto;
+    padding-left: 25px;
+}
+
+#loginregisterArea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 30%;
+    margin-right: 5px;
+}
+
+#navigationArea {
+    display: flex;
+    border: 2px #FEFEFE solid;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 6px #0B1216;
+}
+
+#navigationButtons {
+    width: 60%;
+    display: flex;
+}
+
+#searchArea {
+    margin: 2px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+}
+
+#content {
+    border: 2px #FEFEFE solid;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5px;
+    align-content: space-between;
+    box-shadow: 3px 3px 6px #0B1216;
+}
+
+.contentHeader {
+    border: 2px #FEFEFE solid;
+    margin: 5px;
+    padding-left: 10px;
+    box-shadow: 3px 3px 6px #0B1216;
+}
+
+.categoryHeader {
+	display: flex;
+    align-items: center;
+}
+
+.contentArea {
+    border: 2px #FEFEFE solid;
+    font-size: 14px;
+    margin: 8px 5px;
+    box-shadow: 3px 3px 6px #0B1216;
+    display: block;
+    padding: 14px 10px;
+    text-decoration: none;
+    color: #FEFEFE
+}

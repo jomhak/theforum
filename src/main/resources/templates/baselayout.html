@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Home page</title>
+	<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+</head>
+<body>
+
+	<div id="main">
+
+		<div id="headerArea">
+			<div id="headerGreeting">
+				<h1>The Forum</h1>
+			</div>
+			<div id="loginregisterArea">
+				<input type="button" class="generalButton" value="Login" onclick="alert(123)">
+				<input type="button" class="generalButton" value="Register" onclick="alert(321)">
+			</div>
+		</div>
+		<div id="navigationArea">
+			<div id="navigationButtons">
+				<input type="button" class="generalButton" id="mainPageButton" value="Main page" onclick="location.href='/'">
+
+			</div>
+
+			<form id="searchArea" method="post">
+				<input type="text" id="searchField">
+				<input type="submit" class="generalButton" value="Search">
+			</form>
+		</div>
+
+		<div id="content">
+			
+			
+
+		</div>
+
+	</div>
+
+</body>
+</html>

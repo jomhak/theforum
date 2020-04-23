@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${post.title}">Title</title>
+	<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+</head>
+<body>
+
+	<div id="main">
+
+		<div id="headerArea">
+			<div id="headerGreeting">
+				<h1>The Forum</h1>
+			</div>
+			<div id="loginregisterArea">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Login" onclick="location.href='/login'">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Register" onclick="alert(321)">
+				
+				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Profile" onclick="location.href='/profile'">
+				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+					<input type="submit" class="generalButton" value="Logout">
+				</form>
+					
+			</div>
+		</div>
+		<div id="navigationArea">
+			<div id="navigationButtons">
+				<input type="button" class="generalButton" id="mainPageButton" value="Main page" onclick="location.href='/'">
+				<input type="button" class="generalButton" th:value="${categoryName}" th:onclick="'location.href = \'' + @{/category/{categoryName}(categoryName=${categoryName})} + '\''" >
+			</div>
+
+			<form th:action="@{/search}" id="searchArea" method="post">
+				<input type="text" id="searchField" name="searchField" maxlength="255" required>
+				<input type="submit" class="generalButton" value="Search">
+			</form>
+		</div>
+
+		<div id="content">
+			<div class="contentHeader">
+				<h3 th:text="${post.title}">Post title</h3>
+				<input sec:authorize="isAuthenticated()" th:if="${post.user.username == loggedUsername}" type="button" class="generalButton" value="Edit post" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/edit(categoryName=${categoryName}, postId=${postId})} + '\''" >
+				<input sec:authorize="isAuthenticated()" th:if="${post.user.username == loggedUsername}" type="button" class="generalButton" value="Delete post" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/delete(categoryName=${categoryName}, postId=${postId})} + '\''" >
+				<div class="contentArea">
+					<span th:text="${'Posted: ' + post.created + ' by ' + post.user.username}">Post created</span><br><br>
+					<span th:text="${post.content}">Post content</span>
+				</div>
+			</div>
+			
+			<div class="contentHeader">
+				<h5>Comments</h5>
+				<div th:each="comment : ${post.comments}" class="contentArea">
+					<span th:text="${comment.content}">Comment content</span><br>
+					<span th:text="${'Posted: ' + comment.created + ' by ' + comment.user.username}">Comment created</span>
+					<input sec:authorize="isAuthenticated()" th:if="${comment.user.username == loggedUsername}" type="button" class="generalButton" value="Edit comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/{commentId}/edit(categoryName=${categoryName}, postId=${postId}, commentId=${comment.commentId})} + '\''" >
+					<input sec:authorize="isAuthenticated()" th:if="${comment.user.username == loggedUsername}" type="button" class="generalButton" value="Delete comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/{commentId}/delete(categoryName=${categoryName}, postId=${postId}, commentId=${comment.commentId})} + '\''" >
+				</div>
+				
+				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Add comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/comment(categoryName=${categoryName}, postId=${postId})} + '\''" >
+			</div>
+			
+		</div>
+
+	</div>
+
+</body>
+</html>

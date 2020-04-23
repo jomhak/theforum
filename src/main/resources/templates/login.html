@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Home page</title>
+	<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+</head>
+<body>
+
+	<div id="main">
+
+		<div id="headerArea">
+			<div id="headerGreeting">
+				<h1>The Forum</h1>
+			</div>
+			<div id="loginregisterArea">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Login" onclick="location.href='/login'">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Register" onclick="alert(321)">
+				
+				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Profile" onclick="location.href='/profile'">
+				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+					<input type="submit" class="generalButton" value="Logout">
+				</form>
+				
+			</div>
+		</div>
+		<div id="navigationArea">
+			<div id="navigationButtons">
+				<input type="button" class="generalButton" id="mainPageButton" value="Main page" onclick="location.href='/'">
+				
+			</div>
+
+			<form th:action="@{/search}" id="searchArea" method="post">
+				<input type="text" id="searchField" name="searchField" maxlength="255" required>
+				<input type="submit" class="generalButton" value="Search">
+			</form>
+		</div>
+
+		<div id="content">
+			<h3>Login</h3>
+		
+			<form th:action="@{/login}" action="#" method="post">
+				
+				<label>Username</label>
+				<br>
+				<input type="text" name="username" class="textField" maxlength="255" required>
+				<br><br>
+				<label>Password</label>
+				<br>
+				<input type="password" name="password" class="textField" maxlength="255" required>
+				<br>
+				<input type="submit" value="Login" class="generalButton" >
+			
+			</form>
+			
+
+		</div>
+
+	</div>
+
+</body>
+</html>

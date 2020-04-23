@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${categoryName}">Title</title>
+	<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+</head>
+<body>
+
+	<div id="main">
+
+		<div id="headerArea">
+			<div id="headerGreeting">
+				<h1>The Forum</h1>
+			</div>
+			<div id="loginregisterArea">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Login" onclick="location.href='/login'">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Register" onclick="alert(321)">
+				
+				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Profile" onclick="location.href='/profile'">
+				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+					<input type="submit" class="generalButton" value="Logout">
+				</form>
+					
+			</div>
+		</div>
+		<div id="navigationArea">
+			<div id="navigationButtons">
+				<input type="button" class="generalButton" id="mainPageButton" value="Main page" onclick="location.href='/'">
+				<input type="button" class="generalButton" th:value="${categoryName}" th:onclick="'location.href = \'' + @{/category/{categoryName}(categoryName=${categoryName})} + '\''" >
+			</div>
+
+			<form th:action="@{/search}" id="searchArea" method="post">
+				<input type="text" id="searchField" name="searchField" maxlength="255" required>
+				<input type="submit" class="generalButton" value="Search">
+			</form>
+		</div>
+
+		<div id="content">
+			<div class="contentHeader categoryHeader">
+				<h3 th:text="${categoryName + ' posts'}">Category name</h3>
+				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Create a new post" th:onclick="'location.href = \'' + @{/category/{categoryName}/new(categoryName=${categoryName})} + '\''" >
+				<input sec:authorize="hasAuthority('admin')" type="button" class="generalButton" value="Edit category" th:onclick="'location.href = \'' + @{/category/{categoryName}/edit(categoryName=${categoryName})} + '\''" >
+				<input sec:authorize="hasAuthority('admin')" type="button" class="generalButton" value="Delete category" th:onclick="'location.href = \'' + @{/category/{categoryName}/delete(categoryName=${categoryName})} + '\''" >
+			</div>
+			<a th:each="post : ${posts}" th:href="@{/category/{categoryName}/{postId}(categoryName=${categoryName}, postId=${post.postId})}"  class="contentArea">
+				<span th:text="${post.title + ' | Posted: ' + post.created}">Post title</span>
+			</a>
+			
+
+		</div>
+
+	</div>
+
+</body>
+</html>
