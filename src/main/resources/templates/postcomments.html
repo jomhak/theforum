@@ -40,8 +40,8 @@
 		<div id="content">
 			<div class="contentHeader">
 				<h3 th:text="${post.title}">Post title</h3>
-				<input sec:authorize="isAuthenticated()" th:if="${post.user.username == loggedUsername}" type="button" class="generalButton" value="Edit post" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/edit(categoryName=${categoryName}, postId=${postId})} + '\''" >
-				<input sec:authorize="isAuthenticated()" th:if="${post.user.username == loggedUsername}" type="button" class="generalButton" value="Delete post" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/delete(categoryName=${categoryName}, postId=${postId})} + '\''" >
+				<input sec:authorize="isAuthenticated()" th:if="${loggedRole == 'admin' or loggedRole == 'moderator' or post.user.username == loggedUsername}" type="button" class="generalButton" value="Edit post" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/edit(categoryName=${categoryName}, postId=${postId})} + '\''" >
+				<input sec:authorize="isAuthenticated()" th:if="${loggedRole == 'admin' or loggedRole == 'moderator' or post.user.username == loggedUsername}" type="button" class="generalButton" value="Delete post" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/delete(categoryName=${categoryName}, postId=${postId})} + '\''" >
 				<div class="contentArea">
 					<span th:text="${'Posted: ' + post.created + ' by ' + post.user.username}">Post created</span><br><br>
 					<span th:text="${post.content}">Post content</span>
@@ -53,8 +53,8 @@
 				<div th:each="comment : ${post.comments}" class="contentArea">
 					<span th:text="${comment.content}">Comment content</span><br>
 					<span th:text="${'Posted: ' + comment.created + ' by ' + comment.user.username}">Comment created</span>
-					<input sec:authorize="isAuthenticated()" th:if="${comment.user.username == loggedUsername}" type="button" class="generalButton" value="Edit comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/{commentId}/edit(categoryName=${categoryName}, postId=${postId}, commentId=${comment.commentId})} + '\''" >
-					<input sec:authorize="isAuthenticated()" th:if="${comment.user.username == loggedUsername}" type="button" class="generalButton" value="Delete comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/{commentId}/delete(categoryName=${categoryName}, postId=${postId}, commentId=${comment.commentId})} + '\''" >
+					<input sec:authorize="isAuthenticated()" th:if="${loggedRole == 'admin' or loggedRole == 'moderator' or comment.user.username == loggedUsername}" type="button" class="generalButton" value="Edit comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/{commentId}/edit(categoryName=${categoryName}, postId=${postId}, commentId=${comment.commentId})} + '\''" >
+					<input sec:authorize="isAuthenticated()" th:if="${loggedRole == 'admin' or loggedRole == 'moderator' or comment.user.username == loggedUsername}" type="button" class="generalButton" value="Delete comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/{commentId}/delete(categoryName=${categoryName}, postId=${postId}, commentId=${comment.commentId})} + '\''" >
 				</div>
 				
 				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Add comment" th:onclick="'location.href = \'' + @{/category/{categoryName}/{postId}/comment(categoryName=${categoryName}, postId=${postId})} + '\''" >

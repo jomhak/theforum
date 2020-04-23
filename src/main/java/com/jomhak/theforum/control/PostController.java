@@ -114,6 +114,9 @@ public class PostController {
 		
 		if (authentication != null) {
 			String username = authentication.getName();
+			User user = userRepository.findByUsername(username);
+			String role = user.getRole().getName();
+			model.addAttribute("loggedRole", role);
 			model.addAttribute("loggedUsername", username);
 		}
 		return "postcomments";
