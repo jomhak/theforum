@@ -1,6 +1,7 @@
 package com.jomhak.theforum.domain;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Category {
 	private Long categoryId;
 	
 	@NotBlank
+	@Column(name = "name", unique = true)
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

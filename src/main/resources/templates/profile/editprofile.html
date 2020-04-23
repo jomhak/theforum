@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<meta charset="UTF-8">
-	<title>Profile</title>
+	<title>Edit profile</title>
 	<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
 </head>
@@ -22,7 +22,7 @@
 				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
 					<input type="submit" class="generalButton" value="Logout">
 				</form>
-				
+					
 			</div>
 		</div>
 		<div id="navigationArea">
@@ -38,12 +38,16 @@
 		</div>
 
 		<div id="content">
+			<h3>Edit profile</h3>
+		
+			<form th:object="${user}" th:action="@{/profile/edit}" action="#" method="post">
+				<label>Email</label>
+				<br><br>
+				<input type="text" th:field="*{email}" th:value="${user.email}" class="textField" maxlength="255" required>
+
+				<input type="submit" value="Save profile" class="generalButton" >
 			
-			<h3>Profile</h3>
-			
-			<p th:text="'Username: ' + ${userName}"></p>
-			
-			<p th:text="'Email: ' + ${userEmail}"></p>
+			</form>
 			
 
 		</div>

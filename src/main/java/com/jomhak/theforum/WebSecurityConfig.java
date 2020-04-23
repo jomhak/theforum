@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.authorizeRequests()
 			.antMatchers("/",
+						"/api/category/**",
 						"/signup",
 						"/category",
 						"/category/{categoryName}",

@@ -3,6 +3,7 @@ package com.jomhak.theforum.control;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ public class UserController {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	// Signup / addUser
 	
 	@GetMapping("/signup")
 	public String showSignup(Model model) {
@@ -60,5 +63,43 @@ public class UserController {
 		}
 		return "redirect:/login";
 	}
+	
+	// Profile
+	
+	@GetMapping("/profile")
+	public String showProfile(Model model, Authentication authentication) {
+		String userName = authentication.getName();
+		User user = userRepository.findByUsername(userName);
+
+			
+		model.addAttribute("userName", user.getUsername());
+		model.addAttribute("userEmail", user.getEmail());
+		return "profile/profile";
+	}
+	
+	// editUser
+	
+	@GetMapping("/profile/edit")
+	public String showEditUser(Authentication authentication, Model model) {
+		String username = authentication.getName();
+		User user = userRepository.findByUsername(username);
+		
+		model.addAttribute("user", user);
+		return "profile/editprofile";
+	}
+	
+	@PostMapping("/profile/edit")
+	public String saveEditUser(@ModelAttribute("user") @Valid User editUser, Authentication authentication) {
+		String username = authentication.getName();
+		User user = userRepository.findByUsername(username);
+		
+		editUser.setUserId(user.getUserId());
+		editUser.setUsername(username);
+		editUser.setPasswordHash(user.getPasswordHash());
+		userRepository.save(editUser);
+		
+		return "redirect:/profile";
+	}
+	
 
 }

@@ -46,8 +46,8 @@ public class TheforumApplication {
 			
 			log.info("Create users");
 			// user/salasana, admin/sanasala
-			userRepository.save(new User("user", "$2a$10$nBgjJ9qQB2poMNZkY2D5HuAscR7wTmOVtJvMb7Dn.r2JNGyCZNvEG", "pekka@email.com", userRole));
-			userRepository.save(new User("admin", "$2a$10$rK1ortSlb6ompzrcsDTSaOG0DPxPm3scube7fFNiXYN3w9IYX08TG", "mikko@email.com", adminRole));
+			userRepository.save(new User("user", "$2a$10$nBgjJ9qQB2poMNZkY2D5HuAscR7wTmOVtJvMb7Dn.r2JNGyCZNvEG", "user@email.com", userRole));
+			userRepository.save(new User("admin", "$2a$10$rK1ortSlb6ompzrcsDTSaOG0DPxPm3scube7fFNiXYN3w9IYX08TG", "admin@email.com", adminRole));
 			
 			log.info("Create categories");
 			categoryRepository.save(new Category("Music"));
