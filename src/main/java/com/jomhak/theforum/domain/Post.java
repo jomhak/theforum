@@ -53,7 +53,7 @@ public class Post {
 		
 	}
 	
-	public Post(String title, String content, LocalDateTime created, Category category, User user) {
+	public Post(@NotBlank String title, @NotBlank String content, LocalDateTime created, Category category, User user) {
 		super();
 		this.title = title;
 		this.content = content;
@@ -74,7 +74,7 @@ public class Post {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(@NotBlank String title) {
 		this.title = title;
 	}
 
@@ -82,7 +82,7 @@ public class Post {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(@NotBlank String content) {
 		this.content = content;
 	}
 

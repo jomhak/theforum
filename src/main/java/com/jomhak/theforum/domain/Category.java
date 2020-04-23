@@ -31,7 +31,7 @@ public class Category {
 		
 	}
 	
-	public Category(String name) {
+	public Category(@NotBlank String name) {
 		super();
 		this.name = name;
 	}
@@ -48,7 +48,7 @@ public class Category {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(@NotBlank String name) {
 		this.name = name;
 	}
 

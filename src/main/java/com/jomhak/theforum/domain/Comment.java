@@ -40,7 +40,7 @@ public class Comment {
 		
 	}
 	
-	public Comment(String content, LocalDateTime created, Post post, User user) {
+	public Comment(@NotBlank String content, LocalDateTime created, Post post, User user) {
 		super();
 		this.content = content;
 		this.created = created;
@@ -62,7 +62,7 @@ public class Comment {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(@NotBlank String content) {
 		this.content = content;
 	}
 

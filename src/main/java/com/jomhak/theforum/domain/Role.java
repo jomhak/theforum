@@ -30,7 +30,7 @@ public class Role {
 		
 	}
 	
-	public Role(String name) {
+	public Role(@NotBlank String name) {
 		super();
 		this.name = name;
 	}
@@ -47,7 +47,7 @@ public class Role {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(@NotBlank String name) {
 		this.name = name;
 	}
 

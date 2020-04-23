@@ -16,7 +16,7 @@
 			</div>
 			<div id="loginregisterArea">
 				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Login" onclick="location.href='/login'">
-				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Register" onclick="alert(321)">
+				<input sec:authorize="!isAuthenticated()" type="button" class="generalButton" value="Register" onclick="location.href='/signup'">
 				
 				<input sec:authorize="isAuthenticated()" type="button" class="generalButton" value="Profile" onclick="location.href='/profile'">
 				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
